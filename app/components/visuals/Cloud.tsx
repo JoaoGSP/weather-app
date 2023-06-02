@@ -1,7 +1,13 @@
 export function CloudNumberOne() {
   return (
     <div className='h-[233px] w-[467px]'>
-      <svg width='full' height='full' viewBox='0 0 467 233' fill='none' xmlns='http://www.w3.org/2000/svg'>
+      <svg
+        width='full'
+        height='full'
+        viewBox='0 0 467 233'
+        fill='none'
+        xmlns='http://www.w3.org/2000/svg'
+      >
         <path
           d='M44.6562 180.187H408.719V212.597C408.719 223.865 399.584 233 388.316 233H65.0597C53.7912 233 44.6562 223.865 44.6562 212.597V180.187Z'
           fill='white'
@@ -36,7 +42,13 @@ export function CloudNumberTwo() {
 export function RainyCloud() {
   return (
     <div className='h-[233px] w-[467px]'>
-      <svg width='full' height='full' viewBox='0 0 467 233' fill='none' xmlns='http://www.w3.org/2000/svg'>
+      <svg
+        width='full'
+        height='full'
+        viewBox='0 0 467 233'
+        fill='none'
+        xmlns='http://www.w3.org/2000/svg'
+      >
         <path
           d='M44.6562 180.187H408.719V212.597C408.719 223.865 399.584 233 388.316 233H65.0597C53.7912 233 44.6562 223.865 44.6562 212.597V180.187Z'
           fill='#DCDCDC'
