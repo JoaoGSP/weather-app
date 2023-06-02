@@ -1,0 +1,15 @@
+.sun-1 {
+  position: absolute;
+  left: -137px;
+  top: -136px;
+  width: 450px;
+  height: 450px;
+  background: linear-gradient(135deg, #ff9900 18.23%, #faff00 72.92%);
+}
+/* .cloud-1 {
+  position: absolute;
+  width: 617px;
+  height: 300px;
+  left: 1042px;
+  top: 0px;
+} */
