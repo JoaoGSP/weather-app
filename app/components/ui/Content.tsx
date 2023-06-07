@@ -1,8 +1,23 @@
-import React from 'react'
+'use client'
+import React, { useState, useEffect } from 'react'
 import styles from './content.module.css'
 import { montserrat, nunito } from '../../lib/fonts';
 import Toggle from './Toggle';
+import { getWeatherInfo } from '@/app/lib/api';
 export default function Content() {
+  // const [data, setData] = useState()
+  // useEffect(() => {
+  //   async function provideData() {
+  //     const coord = JSON.parse(sessionStorage.getItem('local'))
+  //     const { lat, long } = coord
+  //     setData(await getWeatherInfo(`${lat},${long}`))
+  //   }
+  //   provideData()
+  // }, [])
+
+  // console.log(data);
+
+
   return (
     <article style={montserrat.style} className='bg-[#F9FFFE] w-96 h-[450px] z-50 rounded-[50px] shadow-xl flex flex-col items-center py-3 px-5'>
       <header className='w-full flex justify-end py-2 px-4'>
