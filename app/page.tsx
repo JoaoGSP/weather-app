@@ -1,15 +1,17 @@
-import Content from './components/ui/Content';
-import { Moon } from './components/visuals/Moon';
-import { Sun } from './components/visuals/Sun';
+'use client'
+import Content from "./components/ui/Content";
+import { getWeatherInfo } from "./lib/api";
+export default async function Home() {
 
+  console.log(window.location)
 
-export default function Home() {
+  console.log(await getWeatherInfo('186.235.62.10'))
   return (
     <main>
       <div className='flex items-center justify-center min-w-screen w-full min-h-screen h-full overflow-hidden bg-sky-300'>
-        <Sun yAxis='-15%' xAxis='-7%' />
-        {/* <Content /> */}
 
+        {/* <Content /> */}
+        <Content />
       </div>
     </main>
   );

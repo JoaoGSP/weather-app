@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../page.module.css'
+import styles from './content.module.css'
 import { montserrat, nunito } from '../../lib/fonts';
 import Toggle from './Toggle';
 export default function Content() {

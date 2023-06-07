@@ -1,3 +1,4 @@
+
 'use client'
 import styled, { css } from "styled-components"
 
@@ -5,8 +6,11 @@ export const Sun = styled.div<{ cloudy?: boolean, reverse?: boolean, yAxis?: str
   position: absolute;
   ${(props) => props.reverse ? css`right: ${props.xAxis};` : css`left: ${props.xAxis};`}
   top: ${props => props.yAxis};
-  width: 450px;
-  height: 450px;
+  @media (max-width: 1024px) {
+    
+  }
+  width: 350px;
+  height: 350px;
   border-radius: 100%;
   ${(props) => {
     if (props.cloudy) {
