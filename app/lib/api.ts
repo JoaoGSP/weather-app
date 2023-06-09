@@ -1,13 +1,11 @@
 async function getWeatherInfo(local?: string): Promise<any> {
-
-  try {
-    const res = await fetch(`https://api.weatherapi.com/v1/current.json?key=b8540fe971174840b9a125308231305&q=${local}&aqi=no`)
-    return res.json()
-  } catch (error) {
-    console.log(error);
-
+  let localForQuery: string | undefined = 'brasilia'
+  local !== ',' ? localForQuery = local : ''
+  const res = await fetch(`https://api.weatherapi.com/v1/current.json?key=7647ae19db23411c851131213230906&q=${localForQuery}&aqi=no`)
+  if (!res.ok) {
+    console.log('Failed to fetch!!');
   }
-
+  return res.json()
 }
 
 export { getWeatherInfo }
