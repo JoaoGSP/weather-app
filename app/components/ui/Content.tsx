@@ -1,35 +1,40 @@
 'use client'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import styles from './content.module.css'
 import { montserrat, nunito } from '../../lib/fonts';
 import Toggle from './Toggle';
-import { getWeatherInfo } from '@/app/lib/api';
-import ReactLoading from 'react-loading';
+import { getWeatherInfo } from '@/app/lib/getData';
+import { ApiData } from '@/app/lib/types/ApiData';
 
 export default function Content() {
-  const [data, setData] = useState()
+  const [data, setData] = useState<ApiData>()
   const [inputValue, setInputValue] = useState('')
 
   useEffect(() => {
     async function fetchData() {
-      getWeatherInfo('brasilia').then(dt => setData(dt))
+      const dt = await getWeatherInfo('brasilia')
+      {/*Add toast for error handling*/ }
+      if (dt.status === 400) {
+        throw new Error('Fetch failed');
+      }
+      setData(dt)
     }
     fetchData()
   }, [])
 
-  function handleInputChange(event) {
+  function handleInputChange(event: { target: { value: any; }; }) {
     const value = event.target.value
     setInputValue(value)
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: { preventDefault: () => void; }) {
     e.preventDefault()
-    await getWeatherInfo(inputValue).then(res => {
-      setData(res)
-      console.log(data)
-    }).catch(
-
-    )
+    const newDt = await getWeatherInfo(inputValue)
+    {/*Add toast for error handling*/ }
+    if (newDt.status === 400) {
+      throw new Error('Fetch failed');
+    }
+    setData(newDt)
   }
 
   return (
@@ -37,7 +42,7 @@ export default function Content() {
       <nav className='flex flex-col items-center w-full'>
         <form onSubmit={handleSubmit} className=' p-2 w-96 h-10 bg-transparent rounded-xl border-2 border-white flex align-center justify-between'>
           <input id='scope' title='scope' type='text'
-            placeholder={data?.location.name}
+            placeholder={data?.location?.name}
             value={inputValue}
             onChange={handleInputChange}
             className="bg-transparent w-full h-full text-sm text-gray-500 font-medium focus:outline-none focus:bg-transparent placeholder:font-normal placeholder:text-gray-500">
@@ -56,26 +61,28 @@ export default function Content() {
           <header className='w-full flex justify-end py-2 px-4'>
             <Toggle />
           </header>
-          <div className='w-full h-full flex flex-col items-center justify-evenly'>
-            <section className='w-fit bg-transparent shadow-xl shadow-sky-100 max-h-28 h-fit px-3 py-2 bg-blue-50 grid place-content-center rounded-xl border-4 border-[#3ac5e3]'>
-              <span style={nunito.style} className={styles.title}>{data?.current.temp_c}º</span>
-            </section>
-            <section className='flex-grow font-medium text-center text-lg mt-8'>
-              <p className='text-gray-900'>
-                {data?.location.name}
-              </p>
-              <p className='text-gray-900/30'>
-                {data?.location.country}
-              </p>
-            </section>
-            <section className='text-center flex-grow'>
-              <p className='text-gray-900'>Condition</p>
-              <p className='text-gray-900/30'>{data?.current.condition.text}</p>
-            </section>
-          </div>
+          <Suspense fallback={<p>Fetching data.....</p>}>
+            <div className='w-full h-full flex flex-col items-center justify-evenly'>
+              <section className='w-fit bg-transparent shadow-xl shadow-sky-100 max-h-28 h-fit px-3 py-2 bg-blue-50 grid place-content-center rounded-xl border-4 border-[#3ac5e3]'>
+                <span style={nunito.style} className={styles.title}>{data?.current?.temp_c}º</span>
+              </section>
+              <section className='flex-grow font-medium text-center text-lg mt-8'>
+                <p className='text-gray-900'>
+                  {data?.location?.name}
+                </p>
+                <p className='text-gray-900/30'>
+                  {data?.location?.country}
+                </p>
+              </section>
+              <section className='text-center flex-grow'>
+                <p className='text-gray-900'>Condition</p>
+                <p className='text-gray-900/30'>{data?.current?.condition.text}</p>
+              </section>
+            </div>
+          </Suspense >
           <footer>
             <p className='text-gray-900 text-xs font-semibold'>
-              Last Update: <span className='text-gray-900/30 font-light'>{data?.current.last_updated}</span>
+              Last Update: <span className='text-gray-900/30 font-light'>{data?.current?.last_updated}</span>
             </p>
           </footer>
         </article>
