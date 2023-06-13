@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import styles from './Content.module.css';
+import styles from './content.module.css';
 import { montserrat, nunito } from '../../lib/fonts';
 import Toggle from './Toggle';
 import { getWeatherInfo } from '@/app/lib/getData';
