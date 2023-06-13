@@ -7,7 +7,7 @@ export const metadata = {
     'A app made to obtain a weather forecast. It was made with NextJs and integrates a weather api.',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactElement }) {
   return (
     <html lang='en'>
       <body>
