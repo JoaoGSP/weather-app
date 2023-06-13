@@ -1,5 +1,4 @@
 import './globals.css';
-import StyledComponentsRegistry from './lib/registry';
 
 export const metadata = {
   title: 'Weather Forecast App',
@@ -11,7 +10,7 @@ export default function RootLayout({ children }: { children: React.ReactElement 
   return (
     <html lang='en'>
       <body>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        {children}
       </body>
     </html>
   );
