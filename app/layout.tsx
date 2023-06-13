@@ -1,6 +1,4 @@
 import './globals.css';
-import * as dotenv from 'dotenv';
-dotenv.config()
 
 export const metadata = {
   title: 'Weather Forecast App',
