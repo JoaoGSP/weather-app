@@ -48,7 +48,7 @@ export default function Content() {
     setInputValue(value);
   }
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: { preventDefault: () => void; }) {
     e.preventDefault();
     const newDt = await toast.promise(getWeatherInfo(inputValue), {
       pending: {
