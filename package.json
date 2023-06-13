@@ -10,9 +10,9 @@
     "format": "prettier --write {src,app}/**/*.{js,jsx,ts,tsx,css,scss,md,json}"
   },
   "engines": {
-    "node": ">18.*",
-    "yarn": ">3.*",
-    "npm": ">9.*"
+    "node": ">=18.x",
+    "yarn": ">=3.x",
+    "npm": ">=9.x"
   },
   "browserslist": {
     "production": [
