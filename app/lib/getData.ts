@@ -1,13 +1,17 @@
-import { ApiData } from "./types/ApiData"
-
+import { ApiData } from './types/ApiData';
 
 async function getWeatherInfo(local?: string): Promise<ApiData> {
-  const res = await fetch(`https://api.weatherapi.com/v1/current.json?key=7647ae19db23411c851131213230906&q=${local}&aqi=no`)
+  const apiKey = process.env.API_KEY;
+  console.log(apiKey);
+
+  const res = await fetch(
+    `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${local}&aqi=no`
+  );
   if (!res.ok) {
-    const errorRes = { status: 400, message: 'Failed to fetch data!' }
-    return errorRes
+    const errorRes = { status: 400, message: 'Failed to fetch data!' };
+    return errorRes;
   }
-  return res.json()
+  return res.json();
 }
 
-export { getWeatherInfo }
+export { getWeatherInfo };
